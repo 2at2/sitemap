@@ -32,7 +32,7 @@ func TestParserSimple(t *testing.T) {
     </url>
 </urlset>`)
 
-	parser := DefaultParser
+	parser := parser{client: http.DefaultClient}
 	urls, err := parser.parse(data, 0)
 	if !assert.NoError(t, err) {
 		t.FailNow()

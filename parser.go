@@ -6,6 +6,10 @@ import (
 	"net/http"
 )
 
+type Parser interface {
+	Get(url string) ([]string, error)
+}
+
 var DefaultParser = NewParser(nil, 100)
 
 // parser main parser struct
@@ -15,7 +19,7 @@ type parser struct {
 }
 
 // NewParser returns new parser struct
-func NewParser(client *http.Client, maxDepth int) *parser {
+func NewParser(client *http.Client, maxDepth int) Parser {
 	if client == nil {
 		client = http.DefaultClient
 	}
