@@ -1,4 +1,4 @@
-module sitemap
+module github.com/2at2/sitemap
 
 go 1.13
 
