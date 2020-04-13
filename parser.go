@@ -53,8 +53,12 @@ func (p *parser) get(url string, depth int) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	return p.parse(bts, depth)
+	
+	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+		return p.parse(bts, depth)
+	} 
+	
+	return nil, nil
 }
 
 func (p *parser) parse(data []byte, depth int) ([]string, error) {
